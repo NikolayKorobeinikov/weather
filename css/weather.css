@@ -1,0 +1,145 @@
+.content {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  color: rgb(13, 2, 114);
+}
+.search__city {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  gap: 10px;
+}
+.city {
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 5px 15px;
+  font-size: 18px;
+}
+::placeholder {
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: normal;
+}
+.btn {
+  background-color: rgb(178, 222, 246);
+  border-radius: 20px;
+  border: none;
+  padding: 5px 50px;
+  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  width: 140px;
+}
+.btn__text {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  font-size: 16px;
+  transform: translate(-50%, -50%);
+  /* line-height: 1.8; */
+}
+.btn::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgb(103, 202, 255);
+}
+.btn:hover::after {
+  width: 100%;
+  transition-duration: 1s;
+}
+.cityWeather {
+  width: 50%;
+  padding: 10px;
+  box-shadow: 0 0 50px rgb(178, 222, 246);
+  border-radius: 10px;
+}
+.cityName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
+}
+.fa-solid {
+  font-size: 20px;
+}
+.cityName__title,
+.weather__desc {
+  font-size: 25px;
+  line-height: 40px;
+}
+.weather__picture {
+  width: 120px;
+  height: 120px;
+}
+.temperature {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.temperature__desc {
+  font-size: 150px;
+}
+.сelsius {
+  margin-top: 40px;
+  font-size: 19px;
+  font-weight: 800;
+}
+.average__temp {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.max__temp,
+.min__temp {
+  display: flex;
+}
+.line {
+  font-size: 30px;
+}
+.temp__desc {
+  font-size: 60px;
+}
+.сelsius__item {
+  margin-top: 10px;
+  font-weight: 600;
+}
+.weather__data {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.details {
+  font-size: 20px;
+  font-weight: 500;
+}
+.weather__details {
+  font-size: 18px;
+  font-weight: 900;
+}
+.picture {
+  width: 466px;
+  height: 213px;
+  animation-name: house;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes house {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
