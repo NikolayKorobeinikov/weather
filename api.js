@@ -1,43 +1,57 @@
-const nameOfCity = document.querySelector(".city"); // создали переменную, в которые уходят данные ввода введенные в input
-const searchButton = document.querySelector(".btn"); // создали кнопку, при нажатии на которую должна отображаться погода в введенном городе
-const weather = document.querySelector(".cityWeather"); // вывод всей информации о погоде
+const nameOfCity = document.querySelector(".city");
+const searchButton = document.querySelector(".btn");
+const weather = document.querySelector(".cityWeather");
 
-searchButton.addEventListener("click", ()=>{
-    let city = nameOfCity.value;
-    console.log(nameOfCity.value);
-    callCity(city)
+searchButton.addEventListener("click", () => {
+  let city = nameOfCity.value;
+  callCity(city);
 });
-nameOfCity.addEventListener("keypress", press => {
-    if (press.key == 'Enter') {
-        let city = nameOfCity.value;
-        callCity(city);
-    }
-} )
+nameOfCity.addEventListener("keypress", (press) => {
+  if (press.key == "Enter") {
+    let city = nameOfCity.value;
+    callCity(city);
+  }
+});
 
 function callCity(city) {
-    const request = (city == undefined)? "Moscow" : city;
-    const weatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${request}&appid=74e63e46227a677464861a2db0dc04b8`;  
-    fetch(weatherLink)
-    .then ((weather)=> weather.json())
-    .then((getWeather) => cityDescription(getWeather))
+  const request = city == undefined ? "New York" : city;
+  const weatherLink = `https://api.openweathermap.org/data/2.5/weather?q=${request}&appid=74e63e46227a677464861a2db0dc04b8`;
+  fetch(weatherLink)
+    .then((weather) => weather.json())
+    .then((getWeather) => cityDescription(getWeather));
 }
 callCity();
 
-    function cityDescription(getWeather) {
-        const city = getWeather.name;
-        const conditions = getWeather.weather[0].description;
-        const icon = getWeather.weather[0].icon; // объявляем переменную которая отображает иконку погоды в 17 ряду выводим icon  на страницу icon будет меняться в зависимости от погоды
-        const iconAlt = getWeather.weather[0].description;
-        const temp = Math.round(getWeather.main.temp - 273.15);
-        const tempMax = Math.round(getWeather.main.temp_max - 273.15);
-        const tempMin = Math.round(getWeather.main.temp_min - 273.15);
-        const visibility = getWeather.visibility;
-        const humidity = getWeather.main.humidity;
-        const pressure = getWeather.main.pressure;
-        const windSpeed = getWeather.wind.speed;
-        const directionWind = getWeather.wind.deg;
-        const direction = (directionWind == 0)? "N": (directionWind > 0 && directionWind < 90)? "NE" : (directionWind == 90)? "E": (directionWind > 90 && directionWind < 180)? "SE": (directionWind == 180)? "S": (directionWind >180 && directionWind < 270)? "SW": (directionWind == 270)? "W" : "NW";
-        weather.innerHTML = `
+function cityDescription(getWeather) {
+  const city = getWeather.name;
+  const conditions = getWeather.weather[0].description;
+  const icon = getWeather.weather[0].icon;
+  const iconAlt = getWeather.weather[0].description;
+  const temp = Math.round(getWeather.main.temp - 273.15);
+  const tempMax = Math.round(getWeather.main.temp_max - 273.15);
+  const tempMin = Math.round(getWeather.main.temp_min - 273.15);
+  const visibility = getWeather.visibility;
+  const humidity = getWeather.main.humidity;
+  const pressure = getWeather.main.pressure;
+  const windSpeed = getWeather.wind.speed;
+  const directionWind = getWeather.wind.deg;
+  const direction =
+    directionWind == 0
+      ? "N"
+      : directionWind > 0 && directionWind < 90
+      ? "NE"
+      : directionWind == 90
+      ? "E"
+      : directionWind > 90 && directionWind < 180
+      ? "SE"
+      : directionWind == 180
+      ? "S"
+      : directionWind > 180 && directionWind < 270
+      ? "SW"
+      : directionWind == 270
+      ? "W"
+      : "NW";
+  weather.innerHTML = `
         <div class="cityName">
             <i class="fa-solid fa-location-dot"></i>
             <p class="cityName__title">${city}</p>
@@ -77,6 +91,5 @@ callCity();
                 <p class="details">direction: <span class="weather__details">${direction}</span></p>
             </div>
         </div>
-        `
-        console.log(getWeather);
-    }
+        `;
+}
